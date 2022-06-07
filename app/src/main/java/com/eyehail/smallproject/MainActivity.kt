@@ -6,12 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.bouncycastle.util.io.pem.PemObject
 import org.bouncycastle.util.io.pem.PemReader
+
+
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
 import java.security.KeyFactory
+import java.security.Provider
+import java.security.Security
 import java.security.spec.PKCS8EncodedKeySpec
 import java.time.Instant
 import java.util.*
@@ -20,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val provider: Provider = BouncyCastleProvider()
+        Security.addProvider(provider)
 
         val a = getJWT()
 
@@ -27,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getJWT(): String {
+
 
         lateinit var privateKeyPem: PemObject
         var context: Context = this
