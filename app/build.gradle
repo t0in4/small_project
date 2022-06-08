@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 
 
 }
@@ -34,22 +35,30 @@ android {
 }
 
 dependencies {
-
-
+    // official documentation
     api 'io.jsonwebtoken:jjwt-api:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
         runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.5') {
             exclude group: 'org.json', module: 'json' //provided by Android natively
         }
-        // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
-        implementation( 'org.bouncycastle:bcprov-jdk15on:1.70')
+    // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+    implementation( 'org.bouncycastle:bcprov-jdk15on:1.70')
 
+    // not working
+    //implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    //implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+    //implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 
+    // not working
+    //fileTree(include: ['*.jar'], dir: 'libs')
+    //implementation files('libs/bcprov-ext-jdk18on-171.jar')
+    //implementation files('libs/bctls-jdk15on-1.70.jar')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

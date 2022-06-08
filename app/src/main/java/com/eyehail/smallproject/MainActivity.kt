@@ -9,6 +9,9 @@ import io.jsonwebtoken.SignatureAlgorithm
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.bouncycastle.util.io.pem.PemObject
 import org.bouncycastle.util.io.pem.PemReader
+//import libs.bouncycastle.jsse.provider.BouncyCastleProvider
+//import org.bouncycastle.util.io.pem.PemObject
+//import org.bouncycastle.util.io.pem.PemReader
 
 
 import java.io.BufferedReader
@@ -26,7 +29,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val provider: Provider = BouncyCastleProvider()
+        Security.removeProvider("BC");
         Security.addProvider(provider)
+        java.security.Signature.getInstance("RSASSA-PSS", "BC");
+// and/or
+
+        //java.security.Signature.getInstance("RSASSA-PSS", Security.getProvider("BC"));
 
         val a = getJWT()
 
