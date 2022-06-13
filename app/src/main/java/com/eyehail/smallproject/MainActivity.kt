@@ -61,10 +61,13 @@ class MainActivity : AppCompatActivity() {
         val serviceAccountId = "ajeijp19m599s8aos6vr"
         val keyId = "aje92dpc4t4tu7bbu8un"
         val now = Instant.now()
+        // added header parameters
+        val params = mapOf<String, String>("kid" to keyId, "type" to "JWT")
 
         //  JWT.
         val encodedToken: String = Jwts.builder()
-            .setHeaderParam("kid", keyId)
+            //.setHeaderParam("kid", keyId)
+            .setHeaderParams(params)
             .setIssuer(serviceAccountId)
             .setAudience("https://iam.api.cloud.yandex.net/iam/v1/tokens")
             .setIssuedAt(Date.from(now))
